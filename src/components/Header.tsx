@@ -1,4 +1,5 @@
 const Header = () => {
+  const baseUrl = import.meta.env.BASE_URL;
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -14,7 +15,7 @@ const Header = () => {
       {/* Image Section */}
       <div className="mb-8 flex justify-center">
         <img
-          src="/mtconnect.png"
+          src={`${baseUrl}mtconnect.png`}
           alt="Logo MTC Connect"
           className="w-full max-w-xs md:max-w-md"
         />

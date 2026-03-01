@@ -12,6 +12,7 @@ export default function ScrollSequence() {
     const frameCount = 300;
     const canvas = canvasRef.current;
     const section = sectionRef.current;
+    const baseUrl = import.meta.env.BASE_URL;
     if (!canvas) return;
     if (!section) return;
     const context = canvas.getContext("2d");
@@ -58,7 +59,7 @@ export default function ScrollSequence() {
     };
 
     const currentFramePath = (index: number) =>
-      `/frames/frames_${String(index).padStart(4, "0")}.jpg`;
+      `${baseUrl}frames/frames_${String(index).padStart(4, "0")}.jpg`;
 
     // Preload images - use every 2nd frame for faster animation
     const frameStep = 2;

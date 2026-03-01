@@ -1,20 +1,21 @@
 const Empresas = () => {
+  const baseUrl = import.meta.env.BASE_URL;
   return (
     <section className="flex items-center justify-center p-8 relative z-10">
       <div className="text-center">
         <h2 className="text-4xl font-bold mb-6 text-white">
           Empresas presentes
         </h2>
-        <div className="sm:grid-cols-4 flex flex-wrap justify-center items-center gap-6 md:gap-8 mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 mt-6 place-items-center max-w-6xl mx-auto">
           <a
             href="https://www.alticelabs.com"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
-              src="/altice_labs.png"
+              src={`${baseUrl}altice_labs.png`}
               alt="Altice Labs"
-              className="h-12 md:h-16 object-contain"
+              className="h-20 md:h-28 w-auto max-w-36 md:max-w-48 object-contain"
             />
           </a>
 
@@ -24,9 +25,9 @@ const Empresas = () => {
             rel="noopener noreferrer"
           >
             <img
-              src="/apollotech.png"
+              src={`${baseUrl}apollotech.png`}
               alt="Apollo Tech"
-              className="h-12 md:h-16 object-contain"
+              className="h-20 md:h-28 w-auto max-w-36 md:max-w-48 object-contain"
             />
           </a>
 
@@ -36,9 +37,9 @@ const Empresas = () => {
             rel="noopener noreferrer"
           >
             <img
-              src="/ubiwhere.png"
+              src={`${baseUrl}ubiwhere.png`}
               alt="Ubiwhere"
-              className="h-12 md:h-16 object-contain"
+              className="h-20 md:h-28 w-auto max-w-36 md:max-w-48 object-contain"
             />
           </a>
 
@@ -48,21 +49,21 @@ const Empresas = () => {
             rel="noopener noreferrer"
           >
             <img
-              src="/withus.png"
+              src={`${baseUrl}withus.png`}
               alt="Withus"
-              className="h-12 md:h-16 object-contain"
+              className="h-20 md:h-28 w-auto max-w-36 md:max-w-48 object-contain"
             />
           </a>
 
           <a
-            href="https://www.ubiwhere.com/pt/inicio"
+            href="https://viriato.com.pt/pt"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
-              src="/ubiwhere.png"
-              alt="Ubiwhere"
-              className="h-12 md:h-16 object-contain"
+              src={`${baseUrl}viriato.png`}
+              alt="Viriato"
+              className="h-20 md:h-28 w-auto max-w-36 md:max-w-48 object-contain"
             />
           </a>
         </div>
