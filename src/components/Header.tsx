@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header
       id="header-section"
-      className="w-full relative z-[2] bg-black flex flex-col items-center justify-center px-4 py-8"
+      className="w-full relative z-[2] bg-black flex flex-col items-center justify-center px-4 py-8 min-h-screen"
     >
       {/* Image Section */}
       <div className="mb-8 flex justify-center">

@@ -1,6 +1,6 @@
 import ScrollSequence from "./components/ScrollSequence";
 import { Header } from "./components/Header";
-import {Horario} from "./components/timeTable"
+import Horario from "./components/timeTable"
 import { Empresas } from "./components/Companies";
 import { Sponsors } from "./components/Sponsors";
 import { Footer } from "./components/Footer";
