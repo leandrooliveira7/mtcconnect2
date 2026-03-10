@@ -25,7 +25,7 @@ const Footer = () => {
             <img
               src={`${baseUrl}nucleo.png`}
               alt="Logo Núcleo"
-              className="h-12 md:h-16 object-contain"
+              className="h-8 md:h-12 object-contain"
             />
           </a>
 
@@ -38,7 +38,7 @@ const Footer = () => {
             <img
               src={`${baseUrl}aauav.png`}
               alt="Logo AAUAv"
-              className="h-12 md:h-16 object-contain"
+              className="h-8 md:h-12 object-contain"
             />
           </a>
 
@@ -64,7 +64,7 @@ const Footer = () => {
             <img
               src={`${baseUrl}ua_branco.png`}
               alt="Logo UA"
-              className="h-12 md:h-16 object-contain"
+              className="h-8 md:h-12 object-contain"
             />
           </a>
         </div>

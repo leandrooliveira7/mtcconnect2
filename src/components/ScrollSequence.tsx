@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollSequence() {
@@ -9,7 +10,7 @@ export default function ScrollSequence() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const frameCount = 300;
+    const frameCount = 150;
     const canvas = canvasRef.current;
     const section = sectionRef.current;
     const baseUrl = import.meta.env.BASE_URL;

@@ -4,9 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const DAY_START = 8.5; // 08:30
-const DAY_END = 17.5; // 17:30
-
 interface Event {
   time: string;
   tag: string;
@@ -15,24 +12,50 @@ interface Event {
   colSpan?: boolean;
   expandable?: boolean;
   description?: string;
-  speaker?: { initials: string; name: string; role: string };
+  speakers?: { initials: string; name: string; role: string }[];
+  fullWidth?: boolean;
+  halfWidth?: boolean;
 }
 
 const schedule: Event[] = [
-  { time: "08:45", tag: "Check-in", title: "Credenciação", type: "muted" },
+  {
+    time: "08:45",
+    tag: "Check-in",
+    title: "Credenciação",
+    type: "muted",
+    halfWidth: true,
+  },
   {
     time: "09:15",
     tag: "Abertura",
     title: "Sessão de Abertura",
     type: "green",
     expandable: true,
+    fullWidth: true,
     description:
       "Boas-vindas oficiais ao MTC Connect 2026. Apresentação do programa, parceiros e objetivos do evento.",
-    speaker: {
-      initials: "LL",
-      name: "Lara Lourenço",
-      role: "Coordenadora do NEMTC",
-    },
+    speakers: [
+      {
+        initials: "LL",
+        name: "Lara Lourenço",
+        role: "Coordenadora do NEMTC",
+      },
+      {
+        initials: "AV",
+        name: "Ana Veloso",
+        role: "Diretora do DeCA",
+      },
+      {
+        initials: "JR",
+        name: "Joana Regadas",
+        role: "Presidente da AAUAv",
+      },
+      {
+        initials: "AQ",
+        name: "Vice-Reitora Professora Alexandra Queirós",
+        role: "Vice-Reitora da Universidade de Aveiro",
+      },
+    ],
   },
   {
     time: "09:45",
@@ -40,9 +63,12 @@ const schedule: Event[] = [
     title: "Tecnologia, Experiência, Trabalho: Onde se posiciona o MTC?",
     type: "blue",
     expandable: true,
+    fullWidth: true,
     description:
-      "Uma reflexão sobre o papel do curso de MTC no mercado de trabalho atual.",
-    speaker: { initials: "AC", name: "Ana Costa", role: "UX Lead · Farfetch" },
+      "Como sobreviver e destacar-se na era da Inteligência Artificial? Esta sessão foca-se na transformação do mercado de trabalho e nas competências diferenciadoras para o futuro. Vamos enquadrar o papel fundamental dos estudantes de MTC entre a tecnologia e a experiência, oferecendo ferramentas práticas para uma transição de sucesso da academia para o mundo profissional.",
+    speakers: [
+      { initials: "AS", name: "Arnaldo Santos", role: "Docento no DeCA" },
+    ],
   },
   {
     time: "10:00",
@@ -50,6 +76,7 @@ const schedule: Event[] = [
     title: "Coffeebreak",
     type: "muted",
     colSpan: true,
+    halfWidth: true,
   },
   {
     time: "10:30",
@@ -60,11 +87,13 @@ const schedule: Event[] = [
     expandable: false,
     description:
       "Espaço de networking e recrutamento. Os estudantes podem apresentar o seu portfólio e explorar oportunidades de estágio e emprego.",
-    speaker: {
-      initials: "OR",
-      name: "Organização MTC Connect",
-      role: "Coordenação do evento",
-    },
+    speakers: [
+      {
+        initials: "OR",
+        name: "Organização MTC Connect",
+        role: "Coordenação do evento",
+      },
+    ],
   },
   {
     time: "13:00",
@@ -72,6 +101,7 @@ const schedule: Event[] = [
     title: "Pausa de Almoço",
     type: "muted",
     colSpan: true,
+    halfWidth: true,
   },
   {
     time: "14:30",
@@ -82,11 +112,13 @@ const schedule: Event[] = [
     expandable: false,
     description:
       "Continuação da Feira de Empresas com sessões de Speed Dating entre estudantes e recrutadores.",
-    speaker: {
-      initials: "OR",
-      name: "Organização MTC Connect",
-      role: "Coordenação do evento",
-    },
+    speakers: [
+      {
+        initials: "OR",
+        name: "Organização MTC Connect",
+        role: "Coordenação do evento",
+      },
+    ],
   },
   { time: "16:30", tag: "Pausa", title: "Coffeebreak", type: "muted" },
   {
@@ -95,13 +127,21 @@ const schedule: Event[] = [
     title: "Entrega de Prémios",
     type: "blue",
     expandable: true,
+    fullWidth: true,
     description:
       "Cerimónia de entrega de prémios aos estudantes e projetos distinguidos pelas empresas parceiras.",
-    speaker: {
-      initials: "IS",
-      name: "Inês Silva",
-      role: "Vice Coordenadora do NEMTC",
-    },
+    speakers: [
+      {
+        initials: "AN",
+        name: "Ana Nabais",
+        role: "Pedagogia do NEMTC",
+      },
+      {
+        initials: "IM",
+        name: "Ivo Marcelino",
+        role: "Pedagogia do NEMTC",
+      },
+    ],
   },
   {
     time: "17:20",
@@ -109,6 +149,20 @@ const schedule: Event[] = [
     title: "Encerramento",
     type: "outline",
     colSpan: true,
+    expandable: true,
+    description: "Palavras finais e agradecimentos.",
+    speakers: [
+      {
+        initials: "AN",
+        name: "Ana Nabais",
+        role: "Pedagogia do NEMTC",
+      },
+      {
+        initials: "IM",
+        name: "Ivo Marcelino",
+        role: "Pedagogia do NEMTC",
+      },
+    ],
   },
 ];
 
@@ -117,10 +171,6 @@ const sections = [
   { label: "Tarde", startIndex: 6 },
   { label: "Encerramento", startIndex: 8 },
 ];
-
-function pad(n: number) {
-  return String(n).padStart(2, "0");
-}
 
 const blockBase =
   "relative rounded-[5px] p-4 cursor-pointer overflow-hidden transition-shadow duration-300 will-change-transform";
@@ -231,21 +281,23 @@ function Block({ event }: { event: Event }) {
           <p className="text-[12px] leading-relaxed opacity-75 mb-3.5">
             {event.description}
           </p>
-          {event.speaker && (
-            <div className="flex items-center gap-3 mt-1">
-              <div
-                className={`w-9 h-9 rounded-full flex items-center justify-center text-[12px] font-bold font-mono flex-shrink-0 ${avatarStyles[event.type]}`}
-              >
-                {event.speaker.initials}
-              </div>
-              <div>
-                <div className="text-[12px] font-bold">
-                  {event.speaker.name}
+          {event.speakers && event.speakers.length > 0 && (
+            <div className="space-y-3 mt-3">
+              {event.speakers.map((speaker, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div
+                    className={`w-9 h-9 rounded-full flex items-center justify-center text-[12px] font-bold font-mono flex-shrink-0 ${avatarStyles[event.type]}`}
+                  >
+                    {speaker.initials}
+                  </div>
+                  <div>
+                    <div className="text-[12px] font-bold">{speaker.name}</div>
+                    <div className="font-mono text-[10px] opacity-55 mt-0.5 tracking-wide">
+                      {speaker.role}
+                    </div>
+                  </div>
                 </div>
-                <div className="font-mono text-[10px] opacity-55 mt-0.5 tracking-wide">
-                  {event.speaker.role}
-                </div>
-              </div>
+              ))}
             </div>
           )}
         </div>
@@ -311,11 +363,12 @@ export default function Horário() {
 
   return (
     <div className="min-h-screen overflow-x-hidden px-4 py-8" id="horario">
-      <div className="relative z-[2] bg-black flex flex-col px-4 py-8">
-        <h1 className="font-bold text-3xl text-white px-20">11 de março</h1>
+      <div className="relative z-[2] bg-black flex flex-col px-4 py-4 xl:px-16 xl:py-6">
+        <h1 className="font-bold text-3xl text-white px-2">
+          11 de março
+        </h1>
         {/* Timeline */}
-        <div ref={timelineRef} className="relative px-20">
-
+        <div ref={timelineRef} className="relative px-2 xl:px-10">
           {/* Rows */}
           {schedule.map((event, i) => {
             const section = sections.find((s) => s.startIndex === i);
@@ -335,7 +388,17 @@ export default function Horário() {
                     </span>
                   </div>
                   <div
-                    className={`p-1.5 sched-block ${event.colSpan ? "col-span-1" : ""}`}
+                    className={`p-1.5 sched-block ${event.colSpan ? "col-span-1" : ""} ${
+                      event.fullWidth
+                        ? event.colSpan
+                          ? "w-full"
+                          : "w-full col-span-2"
+                        : event.halfWidth
+                          ? event.colSpan
+                            ? "w-full xl:w-1/2"
+                            : "w-full xl:w-1/2 xl:col-span-2"
+                          : ""
+                    }`}
                   >
                     <Block event={event} />
                   </div>
